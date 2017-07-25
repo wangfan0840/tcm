@@ -39,11 +39,28 @@ function gotopage(value) {
         } else {
             showPage(current - 1);
         }
-    } else {
+    } else if(value == "1") {
         if (current == pagenum) {
             return false;
         } else {
             showPage(current + 1);
+        }
+    }else{
+        var inputNum =$("#inputNum").val();
+        if(inputNum>=1&&inputNum<=pagenum){
+
+            if(inputNum!=current){
+                showPage(inputNum);
+            }else{
+                $('#inputNum').val(current+"/" + pagenum)
+                return false;
+            }
+
+
+        }else{
+            $('#inputNum').val(current+"/" + pagenum)
+            return false;
+
         }
     }
 
@@ -72,6 +89,10 @@ function showPage(pageNO, sectionId) {
         alert("error")
 
     });
+
+    $('#inputNum').val(pageNO+"/" + pagenum)
+
+
 
 }
 
