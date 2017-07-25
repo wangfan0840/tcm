@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--[if IE]>
+    <meta http-equiv="x-ua-compatible" content="IE=9"/><![endif]-->
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="Cache" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>a</title>
+    <!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+    <link href="../../../css/icons.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" >
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../../../spinner-loading.css">
+    <link rel="stylesheet" href="../../../styles.css">
+    <link rel="stylesheet" href="../../../bootstrap-select.css">
+    <link rel="stylesheet" href="../../../css/plugins/sweetalert/sweetalert.css"/>
+</head>
+<body>
+<div class="container" style="padding:1rem">
+    <div class="row" style="white-space: nowrap">
+        <div class=" col-md-offse-2 col-xs-2 col-md-2" >
+            <div class="form-group">
+                <input type="text"  id="keyWord" name="keyWord" class="form-control"  >
+                <!--<select class="form-control" id="sort" >
+                    <option value = "1">1</option>
+                    <option value = "2">2</option>
+                </select>-->
+            </div>
+        </div>
+       <div class="">
+            <button type="button" class="btn btn-w-m btn-info" onclick="chaxun()" id="export"><i class='fa fa-check'></i> 查询</button>
+            <button type="button" class="btn btn-w-m btn-info" onclick="createUser()" id="createUser"><i class='fa fa-check'></i> 创建用户</button>
+           <button type="button" class="btn btn-w-m btn-info" onclick="remove()" id="remove"><i class='fa fa-check'></i> 删除</button>
+           <!-- <button type="button" class="btn btn-w-m btn-info" onclick="daoru()" id="import"><i class='fa fa-check'></i> </button>
+            <button type="button" class="btn btn-w-m btn-info" onclick="daochu()" id="export"><i class='fa fa-check'></i> 导出</button>
+            <button type="button" class="btn btn-w-m btn-info" onclick="shanchu()" id="delete"><i class='fa fa-check'></i> 删除</button>
+            <button type="button" class="btn btn-w-m btn-info" onclick="add();" id="add"><i class='fa fa-check'></i> 追加</button>
+            <button type="button" class="btn btn-w-m btn-info" onclick="save();" id="save"><i class='fa fa-check'></i> 保存</button>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="metTable1">
+                <thead>
+                <tr>
+                    <th data-field="state" data-checkbox="true" formatter="stateFormatter"></th>
+                    <th data-field="id" data-halign="center" data-align="center" data-visible="false">ID</th>
+                    <!--  <th data-field="loginName" data-halign="center" data-align="center">登 录 名</th>
+                      <th data-field="userName" data-halign="center" data-align="center">姓 名</th>
+                      <th data-field="permission" data-halign="center" data-align="center" data-visible="false">权 限</th>
+                      <th data-field="registerTime" data-halign="center" data-align="center" data-visible="false">注册时间</th>
+                      <th data-field="perTime" data-halign="center" data-align="center" data-visible="false">权限时间</th>
+                      <th data-field="telephone" data-halign="center" data-align="center">电 话</th>
+                      <th data-field="email" data-halign="center" data-align="center">邮 箱</th>-->
+
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal inmodal fade" id="creat_modal" tabindex="-1"role="dialog" aria-hidden="true" style="margin-top: 7rem;">
+    <div class="modal-dialog" style="text-align:center;width: 40%;">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header" style="padding-top:15px;padding-bottom:15px;">
+                <!--<button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>-->
+                <div style="text-align: center">
+                    <span style="color: rgb(79, 135, 209);"><h3 id="title_zh">账号创建</h3></span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal" id="add_Form">
+                    <div class="row">
+                        <div class="col-sm-12  my-2" hidden>
+                            <div class="col-sm-3" style="text-align: left">
+                                <span style="font-size:1.5rem;" >ID<code>*</code></span>
+                            </div>
+                            <div class="col-sm-8 ">
+                                <input type="text"  id="id" name="id"    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-12  my-2">
+                            <div class="col-sm-3" style="text-align: left">
+                                <span style="font-size:1.5rem;" >登录名<code>*</code></span>
+                            </div>
+                            <div class="col-sm-8 ">
+                                <input type="text"  id="loginName" name="loginName" required="true" zh="true"   class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-12  my-2">
+                            <div class="col-sm-3" style="text-align: left" >
+                                <span style="font-size:1.5rem;" >姓名<code>*</code></span>
+                            </div>
+                            <div class="col-sm-8 ">
+                                <input type="text"  id="userName" name="userName" required="true" mc="true" maxlength="15" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-12  my-2">
+                            <div class="col-sm-3" style="text-align: left">
+                                <span style="font-size:1.5rem;" >权限<code>*</code>&nbsp;</span>
+                            </div>
+                            <div class="col-sm-8 ">
+                                <select class="form-control" id="per" >
+                                    <option value=1>管理员</option>
+                                    <option value=2>会员</option>
+                                    <option value=3>普通用户</option>
+                                    <option value=4>游客</option>
+                                </select>
+                                <!--<div class="btn-group " id="permission" required="true">
+
+                                </div>-->
+                            </div>
+                        </div>
+                        <div class="col-sm-12  my-2">
+                            <div class="col-sm-3" style="text-align: left">
+                                <span style="font-size:1.5rem;" >电话</span>
+                            </div>
+                            <div class="col-sm-8 ">
+                                <input type="text"  id="tel" name="tel" class="form-control"  mobile="true">
+                            </div>
+                        </div>
+                        <div class="col-sm-12  my-2">
+                            <div class="col-sm-3" style="text-align: left">
+                                <span style="font-size:1.5rem;" >邮箱</span>
+                            </div>
+                            <div class="col-sm-8 ">
+                                <input type="text"  id="mail" name="mail" class="form-control" email="true" >
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12 pt-3" style="text-align:center;">
+                            <button type="button" class="btn btn-w-m btn-info ml-5" onclick="chuangjian();" id="add_button"><i class='fa fa-check'></i> 确定创建</button>
+                            <button type="button" class="btn btn-w-m btn-info ml-5" onclick="xiugai();" id="up_button"><i class='fa fa-check'></i> 确定修改</button>
+                            <button type="button" class="btn btn-white ml-3" style="width: 120px" onclick="quxiaomtk();"><i class='fa fa-undo'></i> 取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.7.0/js/md5.min.js"></script>
+<script src="../../../js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="user_manage.js"></script>
+</body>
+</html>

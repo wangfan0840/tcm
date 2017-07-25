@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.SectionTypeMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.SectionType" >
+    <id column="s_type_id" property="sTypeId" jdbcType="BIGINT" />
+    <result column="s_type_name" property="sTypeName" jdbcType="VARCHAR" />
+    <result column="s_type_short" property="sTypeShort" jdbcType="VARCHAR" />
+    <result column="theme_id" property="themeId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    s_type_id, s_type_name, s_type_short, theme_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sec_type
+    where s_type_id = #{sTypeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_sec_type
+    where s_type_id = #{sTypeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.SectionType" >
+    insert into tb_sec_type (s_type_id, s_type_name, s_type_short, 
+      theme_id)
+    values (#{sTypeId,jdbcType=BIGINT}, #{sTypeName,jdbcType=VARCHAR}, #{sTypeShort,jdbcType=VARCHAR}, 
+      #{themeId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.SectionType" >
+    insert into tb_sec_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sTypeId != null" >
+        s_type_id,
+      </if>
+      <if test="sTypeName != null" >
+        s_type_name,
+      </if>
+      <if test="sTypeShort != null" >
+        s_type_short,
+      </if>
+      <if test="themeId != null" >
+        theme_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sTypeId != null" >
+        #{sTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="sTypeName != null" >
+        #{sTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sTypeShort != null" >
+        #{sTypeShort,jdbcType=VARCHAR},
+      </if>
+      <if test="themeId != null" >
+        #{themeId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.SectionType" >
+    update tb_sec_type
+    <set >
+      <if test="sTypeName != null" >
+        s_type_name = #{sTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sTypeShort != null" >
+        s_type_short = #{sTypeShort,jdbcType=VARCHAR},
+      </if>
+      <if test="themeId != null" >
+        theme_id = #{themeId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where s_type_id = #{sTypeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.SectionType" >
+    update tb_sec_type
+    set s_type_name = #{sTypeName,jdbcType=VARCHAR},
+      s_type_short = #{sTypeShort,jdbcType=VARCHAR},
+      theme_id = #{themeId,jdbcType=BIGINT}
+    where s_type_id = #{sTypeId,jdbcType=BIGINT}
+  </update>
+</mapper>

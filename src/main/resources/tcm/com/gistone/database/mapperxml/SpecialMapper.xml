@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.SpecialMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.Special" >
+    <id column="special_id" property="specialId" jdbcType="BIGINT" />
+    <result column="special_name" property="specialName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    special_id, special_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_special
+    where special_id = #{specialId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_special
+    where special_id = #{specialId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.Special" >
+    insert into tb_special (special_id, special_name)
+    values (#{specialId,jdbcType=BIGINT}, #{specialName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.Special" >
+    insert into tb_special
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="specialId != null" >
+        special_id,
+      </if>
+      <if test="specialName != null" >
+        special_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="specialId != null" >
+        #{specialId,jdbcType=BIGINT},
+      </if>
+      <if test="specialName != null" >
+        #{specialName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.Special" >
+    update tb_special
+    <set >
+      <if test="specialName != null" >
+        special_name = #{specialName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where special_id = #{specialId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.Special" >
+    update tb_special
+    set special_name = #{specialName,jdbcType=VARCHAR}
+    where special_id = #{specialId,jdbcType=BIGINT}
+  </update>
+</mapper>

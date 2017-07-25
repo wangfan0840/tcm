@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.WsRelationMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.WsRelation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="section_id" property="sectionId" jdbcType="BIGINT" />
+    <result column="word_id" property="wordId" jdbcType="BIGINT" />
+    <result column="book_id" property="bookId" jdbcType="BIGINT" />
+    <result column="word_type" property="wordType" jdbcType="VARCHAR" />
+    <result column="word_num" property="wordNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, section_id, word_id, book_id, word_type, word_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_ws_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_ws_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.WsRelation" >
+    insert into tb_ws_relation (id, section_id, word_id, 
+      book_id, word_type, word_num
+      )
+    values (#{id,jdbcType=BIGINT}, #{sectionId,jdbcType=BIGINT}, #{wordId,jdbcType=BIGINT}, 
+      #{bookId,jdbcType=BIGINT}, #{wordType,jdbcType=VARCHAR}, #{wordNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.WsRelation" >
+    insert into tb_ws_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sectionId != null" >
+        section_id,
+      </if>
+      <if test="wordId != null" >
+        word_id,
+      </if>
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="wordType != null" >
+        word_type,
+      </if>
+      <if test="wordNum != null" >
+        word_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sectionId != null" >
+        #{sectionId,jdbcType=BIGINT},
+      </if>
+      <if test="wordId != null" >
+        #{wordId,jdbcType=BIGINT},
+      </if>
+      <if test="bookId != null" >
+        #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="wordType != null" >
+        #{wordType,jdbcType=VARCHAR},
+      </if>
+      <if test="wordNum != null" >
+        #{wordNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.WsRelation" >
+    update tb_ws_relation
+    <set >
+      <if test="sectionId != null" >
+        section_id = #{sectionId,jdbcType=BIGINT},
+      </if>
+      <if test="wordId != null" >
+        word_id = #{wordId,jdbcType=BIGINT},
+      </if>
+      <if test="bookId != null" >
+        book_id = #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="wordType != null" >
+        word_type = #{wordType,jdbcType=VARCHAR},
+      </if>
+      <if test="wordNum != null" >
+        word_num = #{wordNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.WsRelation" >
+    update tb_ws_relation
+    set section_id = #{sectionId,jdbcType=BIGINT},
+      word_id = #{wordId,jdbcType=BIGINT},
+      book_id = #{bookId,jdbcType=BIGINT},
+      word_type = #{wordType,jdbcType=VARCHAR},
+      word_num = #{wordNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

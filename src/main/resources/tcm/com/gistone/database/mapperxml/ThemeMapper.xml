@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.ThemeMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.Theme" >
+    <id column="theme_id" property="themeId" jdbcType="BIGINT" />
+    <result column="theme_name" property="themeName" jdbcType="VARCHAR" />
+    <result column="theme_short" property="themeShort" jdbcType="VARCHAR" />
+    <result column="special_id" property="specialId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    theme_id, theme_name, theme_short, special_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_theme
+    where theme_id = #{themeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_theme
+    where theme_id = #{themeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.Theme" >
+    insert into tb_theme (theme_id, theme_name, theme_short, 
+      special_id)
+    values (#{themeId,jdbcType=BIGINT}, #{themeName,jdbcType=VARCHAR}, #{themeShort,jdbcType=VARCHAR}, 
+      #{specialId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.Theme" >
+    insert into tb_theme
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="themeId != null" >
+        theme_id,
+      </if>
+      <if test="themeName != null" >
+        theme_name,
+      </if>
+      <if test="themeShort != null" >
+        theme_short,
+      </if>
+      <if test="specialId != null" >
+        special_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="themeId != null" >
+        #{themeId,jdbcType=BIGINT},
+      </if>
+      <if test="themeName != null" >
+        #{themeName,jdbcType=VARCHAR},
+      </if>
+      <if test="themeShort != null" >
+        #{themeShort,jdbcType=VARCHAR},
+      </if>
+      <if test="specialId != null" >
+        #{specialId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.Theme" >
+    update tb_theme
+    <set >
+      <if test="themeName != null" >
+        theme_name = #{themeName,jdbcType=VARCHAR},
+      </if>
+      <if test="themeShort != null" >
+        theme_short = #{themeShort,jdbcType=VARCHAR},
+      </if>
+      <if test="specialId != null" >
+        special_id = #{specialId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where theme_id = #{themeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.Theme" >
+    update tb_theme
+    set theme_name = #{themeName,jdbcType=VARCHAR},
+      theme_short = #{themeShort,jdbcType=VARCHAR},
+      special_id = #{specialId,jdbcType=BIGINT}
+    where theme_id = #{themeId,jdbcType=BIGINT}
+  </update>
+</mapper>

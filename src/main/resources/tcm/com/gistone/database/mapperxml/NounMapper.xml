@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.NounMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.Noun" >
+    <id column="noun_id" property="nounId" jdbcType="BIGINT" />
+    <result column="noun" property="noun" jdbcType="VARCHAR" />
+    <result column="noun_imp" property="nounImp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    noun_id, noun, noun_imp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_noun
+    where noun_id = #{nounId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_noun
+    where noun_id = #{nounId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.Noun" >
+    insert into tb_noun (noun_id, noun, noun_imp
+      )
+    values (#{nounId,jdbcType=BIGINT}, #{noun,jdbcType=VARCHAR}, #{nounImp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.Noun" >
+    insert into tb_noun
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nounId != null" >
+        noun_id,
+      </if>
+      <if test="noun != null" >
+        noun,
+      </if>
+      <if test="nounImp != null" >
+        noun_imp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nounId != null" >
+        #{nounId,jdbcType=BIGINT},
+      </if>
+      <if test="noun != null" >
+        #{noun,jdbcType=VARCHAR},
+      </if>
+      <if test="nounImp != null" >
+        #{nounImp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.Noun" >
+    update tb_noun
+    <set >
+      <if test="noun != null" >
+        noun = #{noun,jdbcType=VARCHAR},
+      </if>
+      <if test="nounImp != null" >
+        noun_imp = #{nounImp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where noun_id = #{nounId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.Noun" >
+    update tb_noun
+    set noun = #{noun,jdbcType=VARCHAR},
+      noun_imp = #{nounImp,jdbcType=VARCHAR}
+    where noun_id = #{nounId,jdbcType=BIGINT}
+  </update>
+</mapper>

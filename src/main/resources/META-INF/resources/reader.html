@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="Author" contect="http://www.webqin.net">
+    <title>中医</title>
+    <link type="text/css" href="css/css.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="css/plugins/treeview/bootstrap-treeview.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="js/plugins/treeview/bootstrap-treeview.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <style type="text/css">
+        #frameContent{
+            /*width:500px;                                      !*调整显示区的宽*!*/
+            height:480px;                                     /*调整显示区的高*/
+            font-size:14px;
+            line-height:20px;
+            border:1px solid #000000;
+            overflow-pageINdex:hidden;
+            overflow-y:hidden;
+            word-break:break-all;
+        }
+        a{
+            font-size:12px;
+            color:#000000;
+            text-decoration:underline;
+        }
+        a:hover{
+            font-size:12px;
+            color:#CC0000;
+            text-decoration:underline;
+        }
+    </style>
+</head>
+
+<body>
+<div class="row-fluid">
+
+    <div class="col-md-3">
+        <h2>古籍目录</h2>
+        <div id="tree"></div>
+    </div>
+    <div class="col-md-9">
+        <h2 id="desc">Main Content Section</h2>
+
+        <div id="pages" style="font-size:12px;"></div>
+        <div id="frameContent"></div>
+
+    </div>
+</div>
+</body>
+<script src="js/common.js"></script>
+<script src="reader.js"></script>
+</html>

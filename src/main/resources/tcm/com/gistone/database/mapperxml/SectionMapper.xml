@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.SectionMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.Section" >
+    <id column="section_id" property="sectionId" jdbcType="BIGINT" />
+    <result column="book_id" property="bookId" jdbcType="BIGINT" />
+    <result column="section_type" property="sectionType" jdbcType="VARCHAR" />
+    <result column="section_title" property="sectionTitle" jdbcType="VARCHAR" />
+    <result column="section_content" property="sectionContent" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="image_Url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="start_pos" property="startPos" jdbcType="INTEGER" />
+    <result column="end_pos" property="endPos" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    section_id, book_id, section_type, section_title, section_content, number, image_Url, 
+    start_pos, end_pos
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_section
+    where section_id = #{sectionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_section
+    where section_id = #{sectionId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.Section" >
+    insert into tb_section (section_id, book_id, section_type, 
+      section_title, section_content, number, 
+      image_Url, start_pos, end_pos
+      )
+    values (#{sectionId,jdbcType=BIGINT}, #{bookId,jdbcType=BIGINT}, #{sectionType,jdbcType=VARCHAR}, 
+      #{sectionTitle,jdbcType=VARCHAR}, #{sectionContent,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
+      #{imageUrl,jdbcType=VARCHAR}, #{startPos,jdbcType=INTEGER}, #{endPos,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.Section" >
+    insert into tb_section
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sectionId != null" >
+        section_id,
+      </if>
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="sectionType != null" >
+        section_type,
+      </if>
+      <if test="sectionTitle != null" >
+        section_title,
+      </if>
+      <if test="sectionContent != null" >
+        section_content,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="imageUrl != null" >
+        image_Url,
+      </if>
+      <if test="startPos != null" >
+        start_pos,
+      </if>
+      <if test="endPos != null" >
+        end_pos,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sectionId != null" >
+        #{sectionId,jdbcType=BIGINT},
+      </if>
+      <if test="bookId != null" >
+        #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="sectionType != null" >
+        #{sectionType,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionTitle != null" >
+        #{sectionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionContent != null" >
+        #{sectionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="startPos != null" >
+        #{startPos,jdbcType=INTEGER},
+      </if>
+      <if test="endPos != null" >
+        #{endPos,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.Section" >
+    update tb_section
+    <set >
+      <if test="bookId != null" >
+        book_id = #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="sectionType != null" >
+        section_type = #{sectionType,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionTitle != null" >
+        section_title = #{sectionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionContent != null" >
+        section_content = #{sectionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="imageUrl != null" >
+        image_Url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="startPos != null" >
+        start_pos = #{startPos,jdbcType=INTEGER},
+      </if>
+      <if test="endPos != null" >
+        end_pos = #{endPos,jdbcType=INTEGER},
+      </if>
+    </set>
+    where section_id = #{sectionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.Section" >
+    update tb_section
+    set book_id = #{bookId,jdbcType=BIGINT},
+      section_type = #{sectionType,jdbcType=VARCHAR},
+      section_title = #{sectionTitle,jdbcType=VARCHAR},
+      section_content = #{sectionContent,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      image_Url = #{imageUrl,jdbcType=VARCHAR},
+      start_pos = #{startPos,jdbcType=INTEGER},
+      end_pos = #{endPos,jdbcType=INTEGER}
+    where section_id = #{sectionId,jdbcType=BIGINT}
+  </update>
+</mapper>

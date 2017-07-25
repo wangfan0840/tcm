@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.BookinfoMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.Bookinfo" >
+    <id column="book_id" property="bookId" jdbcType="BIGINT" />
+    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+    <result column="appose_name" property="apposeName" jdbcType="VARCHAR" />
+    <result column="section" property="section" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="book_version" property="bookVersion" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="book_abstract" property="bookAbstract" jdbcType="VARCHAR" />
+    <result column="feature" property="feature" jdbcType="VARCHAR" />
+    <result column="dynasty" property="dynasty" jdbcType="VARCHAR" />
+    <result column="finish_year" property="finishYear" jdbcType="VARCHAR" />
+    <result column="copy_state" property="copyState" jdbcType="VARCHAR" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    book_id, book_name, appose_name, section, author, type, book_version, location, book_abstract, 
+    feature, dynasty, finish_year, copy_state, notes, price, image_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_bookinfo
+    where book_id = #{bookId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_bookinfo
+    where book_id = #{bookId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.Bookinfo" >
+    insert into tb_bookinfo (book_id, book_name, appose_name, 
+      section, author, type, 
+      book_version, location, book_abstract, 
+      feature, dynasty, finish_year, 
+      copy_state, notes, price, 
+      image_url)
+    values (#{bookId,jdbcType=BIGINT}, #{bookName,jdbcType=VARCHAR}, #{apposeName,jdbcType=VARCHAR}, 
+      #{section,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{bookVersion,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{bookAbstract,jdbcType=VARCHAR}, 
+      #{feature,jdbcType=VARCHAR}, #{dynasty,jdbcType=VARCHAR}, #{finishYear,jdbcType=VARCHAR}, 
+      #{copyState,jdbcType=VARCHAR}, #{notes,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
+      #{imageUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.Bookinfo" >
+    insert into tb_bookinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="apposeName != null" >
+        appose_name,
+      </if>
+      <if test="section != null" >
+        section,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="bookVersion != null" >
+        book_version,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="bookAbstract != null" >
+        book_abstract,
+      </if>
+      <if test="feature != null" >
+        feature,
+      </if>
+      <if test="dynasty != null" >
+        dynasty,
+      </if>
+      <if test="finishYear != null" >
+        finish_year,
+      </if>
+      <if test="copyState != null" >
+        copy_state,
+      </if>
+      <if test="notes != null" >
+        notes,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="apposeName != null" >
+        #{apposeName,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null" >
+        #{section,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="bookVersion != null" >
+        #{bookVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAbstract != null" >
+        #{bookAbstract,jdbcType=VARCHAR},
+      </if>
+      <if test="feature != null" >
+        #{feature,jdbcType=VARCHAR},
+      </if>
+      <if test="dynasty != null" >
+        #{dynasty,jdbcType=VARCHAR},
+      </if>
+      <if test="finishYear != null" >
+        #{finishYear,jdbcType=VARCHAR},
+      </if>
+      <if test="copyState != null" >
+        #{copyState,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.Bookinfo" >
+    update tb_bookinfo
+    <set >
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="apposeName != null" >
+        appose_name = #{apposeName,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null" >
+        section = #{section,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="bookVersion != null" >
+        book_version = #{bookVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAbstract != null" >
+        book_abstract = #{bookAbstract,jdbcType=VARCHAR},
+      </if>
+      <if test="feature != null" >
+        feature = #{feature,jdbcType=VARCHAR},
+      </if>
+      <if test="dynasty != null" >
+        dynasty = #{dynasty,jdbcType=VARCHAR},
+      </if>
+      <if test="finishYear != null" >
+        finish_year = #{finishYear,jdbcType=VARCHAR},
+      </if>
+      <if test="copyState != null" >
+        copy_state = #{copyState,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where book_id = #{bookId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.Bookinfo" >
+    update tb_bookinfo
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      appose_name = #{apposeName,jdbcType=VARCHAR},
+      section = #{section,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      book_version = #{bookVersion,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      book_abstract = #{bookAbstract,jdbcType=VARCHAR},
+      feature = #{feature,jdbcType=VARCHAR},
+      dynasty = #{dynasty,jdbcType=VARCHAR},
+      finish_year = #{finishYear,jdbcType=VARCHAR},
+      copy_state = #{copyState,jdbcType=VARCHAR},
+      notes = #{notes,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      image_url = #{imageUrl,jdbcType=VARCHAR}
+    where book_id = #{bookId,jdbcType=BIGINT}
+  </update>
+</mapper>

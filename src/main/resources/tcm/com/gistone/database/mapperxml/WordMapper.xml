@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.WordMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.Word" >
+    <id column="word_id" property="wordId" jdbcType="BIGINT" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="theme_type" property="themeType" jdbcType="VARCHAR" />
+    <result column="word" property="word" jdbcType="VARCHAR" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    word_id, parent_id, theme_type, word, alias
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_word
+    where word_id = #{wordId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_word
+    where word_id = #{wordId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.Word" >
+    insert into tb_word (word_id, parent_id, theme_type, 
+      word, alias)
+    values (#{wordId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{themeType,jdbcType=VARCHAR}, 
+      #{word,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.Word" >
+    insert into tb_word
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wordId != null" >
+        word_id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="themeType != null" >
+        theme_type,
+      </if>
+      <if test="word != null" >
+        word,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wordId != null" >
+        #{wordId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="themeType != null" >
+        #{themeType,jdbcType=VARCHAR},
+      </if>
+      <if test="word != null" >
+        #{word,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.Word" >
+    update tb_word
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="themeType != null" >
+        theme_type = #{themeType,jdbcType=VARCHAR},
+      </if>
+      <if test="word != null" >
+        word = #{word,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where word_id = #{wordId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.Word" >
+    update tb_word
+    set parent_id = #{parentId,jdbcType=BIGINT},
+      theme_type = #{themeType,jdbcType=VARCHAR},
+      word = #{word,jdbcType=VARCHAR},
+      alias = #{alias,jdbcType=VARCHAR}
+    where word_id = #{wordId,jdbcType=BIGINT}
+  </update>
+</mapper>

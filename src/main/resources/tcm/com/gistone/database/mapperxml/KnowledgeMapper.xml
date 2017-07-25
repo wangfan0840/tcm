@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.KnowledgeMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.Knowledge" >
+    <id column="knowledge_id" property="knowledgeId" jdbcType="BIGINT" />
+    <result column="knowledge_name" property="knowledgeName" jdbcType="VARCHAR" />
+    <result column="book_id" property="bookId" jdbcType="BIGINT" />
+    <result column="section_id" property="sectionId" jdbcType="BIGINT" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="knowledge_type" property="knowledgeType" jdbcType="VARCHAR" />
+    <result column="birth_env" property="birthEnv" jdbcType="VARCHAR" />
+    <result column="part" property="part" jdbcType="VARCHAR" />
+    <result column="taste" property="taste" jdbcType="VARCHAR" />
+    <result column="gas" property="gas" jdbcType="VARCHAR" />
+    <result column="channel_tropism" property="channelTropism" jdbcType="VARCHAR" />
+    <result column="lift" property="lift" jdbcType="VARCHAR" />
+    <result column="toxicity" property="toxicity" jdbcType="VARCHAR" />
+    <result column="beard" property="beard" jdbcType="VARCHAR" />
+    <result column="make" property="make" jdbcType="VARCHAR" />
+    <result column="hate" property="hate" jdbcType="VARCHAR" />
+    <result column="murder" property="murder" jdbcType="VARCHAR" />
+    <result column="fear" property="fear" jdbcType="VARCHAR" />
+    <result column="against" property="against" jdbcType="VARCHAR" />
+    <result column="main_function" property="mainFunction" jdbcType="VARCHAR" />
+    <result column="symptom" property="symptom" jdbcType="VARCHAR" />
+    <result column="disease" property="disease" jdbcType="VARCHAR" />
+    <result column="component" property="component" jdbcType="VARCHAR" />
+    <result column="usages" property="usages" jdbcType="VARCHAR" />
+    <result column="processing" property="processing" jdbcType="VARCHAR" />
+    <result column="harvest" property="harvest" jdbcType="VARCHAR" />
+    <result column="genuine" property="genuine" jdbcType="VARCHAR" />
+    <result column="identification" property="identification" jdbcType="VARCHAR" />
+    <result column="use_level" property="useLevel" jdbcType="VARCHAR" />
+    <result column="recording" property="recording" jdbcType="VARCHAR" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
+    <result column="taboo" property="taboo" jdbcType="VARCHAR" />
+    <result column="side_effect" property="sideEffect" jdbcType="VARCHAR" />
+    <result column="drug_like" property="drugLike" jdbcType="VARCHAR" />
+    <result column="attention" property="attention" jdbcType="VARCHAR" />
+    <result column="figure" property="figure" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    knowledge_id, knowledge_name, book_id, section_id, alias, knowledge_type, birth_env, 
+    part, taste, gas, channel_tropism, lift, toxicity, beard, make, hate, murder, fear, 
+    against, main_function, symptom, disease, component, usages, processing, harvest, 
+    genuine, identification, use_level, recording, other, taboo, side_effect, drug_like, 
+    attention, figure
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_knowledge
+    where knowledge_id = #{knowledgeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_knowledge
+    where knowledge_id = #{knowledgeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.Knowledge" >
+    insert into tb_knowledge (knowledge_id, knowledge_name, book_id, 
+      section_id, alias, knowledge_type, 
+      birth_env, part, taste, 
+      gas, channel_tropism, lift, 
+      toxicity, beard, make, 
+      hate, murder, fear, 
+      against, main_function, symptom, 
+      disease, component, usages, 
+      processing, harvest, genuine, 
+      identification, use_level, recording, 
+      other, taboo, side_effect, 
+      drug_like, attention, figure
+      )
+    values (#{knowledgeId,jdbcType=BIGINT}, #{knowledgeName,jdbcType=VARCHAR}, #{bookId,jdbcType=BIGINT}, 
+      #{sectionId,jdbcType=BIGINT}, #{alias,jdbcType=VARCHAR}, #{knowledgeType,jdbcType=VARCHAR}, 
+      #{birthEnv,jdbcType=VARCHAR}, #{part,jdbcType=VARCHAR}, #{taste,jdbcType=VARCHAR}, 
+      #{gas,jdbcType=VARCHAR}, #{channelTropism,jdbcType=VARCHAR}, #{lift,jdbcType=VARCHAR}, 
+      #{toxicity,jdbcType=VARCHAR}, #{beard,jdbcType=VARCHAR}, #{make,jdbcType=VARCHAR}, 
+      #{hate,jdbcType=VARCHAR}, #{murder,jdbcType=VARCHAR}, #{fear,jdbcType=VARCHAR}, 
+      #{against,jdbcType=VARCHAR}, #{mainFunction,jdbcType=VARCHAR}, #{symptom,jdbcType=VARCHAR}, 
+      #{disease,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR}, #{usages,jdbcType=VARCHAR}, 
+      #{processing,jdbcType=VARCHAR}, #{harvest,jdbcType=VARCHAR}, #{genuine,jdbcType=VARCHAR}, 
+      #{identification,jdbcType=VARCHAR}, #{useLevel,jdbcType=VARCHAR}, #{recording,jdbcType=VARCHAR}, 
+      #{other,jdbcType=VARCHAR}, #{taboo,jdbcType=VARCHAR}, #{sideEffect,jdbcType=VARCHAR}, 
+      #{drugLike,jdbcType=VARCHAR}, #{attention,jdbcType=VARCHAR}, #{figure,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.Knowledge" >
+    insert into tb_knowledge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="knowledgeId != null" >
+        knowledge_id,
+      </if>
+      <if test="knowledgeName != null" >
+        knowledge_name,
+      </if>
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="sectionId != null" >
+        section_id,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="knowledgeType != null" >
+        knowledge_type,
+      </if>
+      <if test="birthEnv != null" >
+        birth_env,
+      </if>
+      <if test="part != null" >
+        part,
+      </if>
+      <if test="taste != null" >
+        taste,
+      </if>
+      <if test="gas != null" >
+        gas,
+      </if>
+      <if test="channelTropism != null" >
+        channel_tropism,
+      </if>
+      <if test="lift != null" >
+        lift,
+      </if>
+      <if test="toxicity != null" >
+        toxicity,
+      </if>
+      <if test="beard != null" >
+        beard,
+      </if>
+      <if test="make != null" >
+        make,
+      </if>
+      <if test="hate != null" >
+        hate,
+      </if>
+      <if test="murder != null" >
+        murder,
+      </if>
+      <if test="fear != null" >
+        fear,
+      </if>
+      <if test="against != null" >
+        against,
+      </if>
+      <if test="mainFunction != null" >
+        main_function,
+      </if>
+      <if test="symptom != null" >
+        symptom,
+      </if>
+      <if test="disease != null" >
+        disease,
+      </if>
+      <if test="component != null" >
+        component,
+      </if>
+      <if test="usages != null" >
+        usages,
+      </if>
+      <if test="processing != null" >
+        processing,
+      </if>
+      <if test="harvest != null" >
+        harvest,
+      </if>
+      <if test="genuine != null" >
+        genuine,
+      </if>
+      <if test="identification != null" >
+        identification,
+      </if>
+      <if test="useLevel != null" >
+        use_level,
+      </if>
+      <if test="recording != null" >
+        recording,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+      <if test="taboo != null" >
+        taboo,
+      </if>
+      <if test="sideEffect != null" >
+        side_effect,
+      </if>
+      <if test="drugLike != null" >
+        drug_like,
+      </if>
+      <if test="attention != null" >
+        attention,
+      </if>
+      <if test="figure != null" >
+        figure,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="knowledgeId != null" >
+        #{knowledgeId,jdbcType=BIGINT},
+      </if>
+      <if test="knowledgeName != null" >
+        #{knowledgeName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookId != null" >
+        #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="sectionId != null" >
+        #{sectionId,jdbcType=BIGINT},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="knowledgeType != null" >
+        #{knowledgeType,jdbcType=VARCHAR},
+      </if>
+      <if test="birthEnv != null" >
+        #{birthEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="part != null" >
+        #{part,jdbcType=VARCHAR},
+      </if>
+      <if test="taste != null" >
+        #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="gas != null" >
+        #{gas,jdbcType=VARCHAR},
+      </if>
+      <if test="channelTropism != null" >
+        #{channelTropism,jdbcType=VARCHAR},
+      </if>
+      <if test="lift != null" >
+        #{lift,jdbcType=VARCHAR},
+      </if>
+      <if test="toxicity != null" >
+        #{toxicity,jdbcType=VARCHAR},
+      </if>
+      <if test="beard != null" >
+        #{beard,jdbcType=VARCHAR},
+      </if>
+      <if test="make != null" >
+        #{make,jdbcType=VARCHAR},
+      </if>
+      <if test="hate != null" >
+        #{hate,jdbcType=VARCHAR},
+      </if>
+      <if test="murder != null" >
+        #{murder,jdbcType=VARCHAR},
+      </if>
+      <if test="fear != null" >
+        #{fear,jdbcType=VARCHAR},
+      </if>
+      <if test="against != null" >
+        #{against,jdbcType=VARCHAR},
+      </if>
+      <if test="mainFunction != null" >
+        #{mainFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null" >
+        #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="disease != null" >
+        #{disease,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null" >
+        #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="usages != null" >
+        #{usages,jdbcType=VARCHAR},
+      </if>
+      <if test="processing != null" >
+        #{processing,jdbcType=VARCHAR},
+      </if>
+      <if test="harvest != null" >
+        #{harvest,jdbcType=VARCHAR},
+      </if>
+      <if test="genuine != null" >
+        #{genuine,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null" >
+        #{identification,jdbcType=VARCHAR},
+      </if>
+      <if test="useLevel != null" >
+        #{useLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="recording != null" >
+        #{recording,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="taboo != null" >
+        #{taboo,jdbcType=VARCHAR},
+      </if>
+      <if test="sideEffect != null" >
+        #{sideEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="drugLike != null" >
+        #{drugLike,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="figure != null" >
+        #{figure,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.Knowledge" >
+    update tb_knowledge
+    <set >
+      <if test="knowledgeName != null" >
+        knowledge_name = #{knowledgeName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookId != null" >
+        book_id = #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="sectionId != null" >
+        section_id = #{sectionId,jdbcType=BIGINT},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="knowledgeType != null" >
+        knowledge_type = #{knowledgeType,jdbcType=VARCHAR},
+      </if>
+      <if test="birthEnv != null" >
+        birth_env = #{birthEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="part != null" >
+        part = #{part,jdbcType=VARCHAR},
+      </if>
+      <if test="taste != null" >
+        taste = #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="gas != null" >
+        gas = #{gas,jdbcType=VARCHAR},
+      </if>
+      <if test="channelTropism != null" >
+        channel_tropism = #{channelTropism,jdbcType=VARCHAR},
+      </if>
+      <if test="lift != null" >
+        lift = #{lift,jdbcType=VARCHAR},
+      </if>
+      <if test="toxicity != null" >
+        toxicity = #{toxicity,jdbcType=VARCHAR},
+      </if>
+      <if test="beard != null" >
+        beard = #{beard,jdbcType=VARCHAR},
+      </if>
+      <if test="make != null" >
+        make = #{make,jdbcType=VARCHAR},
+      </if>
+      <if test="hate != null" >
+        hate = #{hate,jdbcType=VARCHAR},
+      </if>
+      <if test="murder != null" >
+        murder = #{murder,jdbcType=VARCHAR},
+      </if>
+      <if test="fear != null" >
+        fear = #{fear,jdbcType=VARCHAR},
+      </if>
+      <if test="against != null" >
+        against = #{against,jdbcType=VARCHAR},
+      </if>
+      <if test="mainFunction != null" >
+        main_function = #{mainFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null" >
+        symptom = #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="disease != null" >
+        disease = #{disease,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null" >
+        component = #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="usages != null" >
+        usages = #{usages,jdbcType=VARCHAR},
+      </if>
+      <if test="processing != null" >
+        processing = #{processing,jdbcType=VARCHAR},
+      </if>
+      <if test="harvest != null" >
+        harvest = #{harvest,jdbcType=VARCHAR},
+      </if>
+      <if test="genuine != null" >
+        genuine = #{genuine,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null" >
+        identification = #{identification,jdbcType=VARCHAR},
+      </if>
+      <if test="useLevel != null" >
+        use_level = #{useLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="recording != null" >
+        recording = #{recording,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="taboo != null" >
+        taboo = #{taboo,jdbcType=VARCHAR},
+      </if>
+      <if test="sideEffect != null" >
+        side_effect = #{sideEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="drugLike != null" >
+        drug_like = #{drugLike,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        attention = #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="figure != null" >
+        figure = #{figure,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where knowledge_id = #{knowledgeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.Knowledge" >
+    update tb_knowledge
+    set knowledge_name = #{knowledgeName,jdbcType=VARCHAR},
+      book_id = #{bookId,jdbcType=BIGINT},
+      section_id = #{sectionId,jdbcType=BIGINT},
+      alias = #{alias,jdbcType=VARCHAR},
+      knowledge_type = #{knowledgeType,jdbcType=VARCHAR},
+      birth_env = #{birthEnv,jdbcType=VARCHAR},
+      part = #{part,jdbcType=VARCHAR},
+      taste = #{taste,jdbcType=VARCHAR},
+      gas = #{gas,jdbcType=VARCHAR},
+      channel_tropism = #{channelTropism,jdbcType=VARCHAR},
+      lift = #{lift,jdbcType=VARCHAR},
+      toxicity = #{toxicity,jdbcType=VARCHAR},
+      beard = #{beard,jdbcType=VARCHAR},
+      make = #{make,jdbcType=VARCHAR},
+      hate = #{hate,jdbcType=VARCHAR},
+      murder = #{murder,jdbcType=VARCHAR},
+      fear = #{fear,jdbcType=VARCHAR},
+      against = #{against,jdbcType=VARCHAR},
+      main_function = #{mainFunction,jdbcType=VARCHAR},
+      symptom = #{symptom,jdbcType=VARCHAR},
+      disease = #{disease,jdbcType=VARCHAR},
+      component = #{component,jdbcType=VARCHAR},
+      usages = #{usages,jdbcType=VARCHAR},
+      processing = #{processing,jdbcType=VARCHAR},
+      harvest = #{harvest,jdbcType=VARCHAR},
+      genuine = #{genuine,jdbcType=VARCHAR},
+      identification = #{identification,jdbcType=VARCHAR},
+      use_level = #{useLevel,jdbcType=VARCHAR},
+      recording = #{recording,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR},
+      taboo = #{taboo,jdbcType=VARCHAR},
+      side_effect = #{sideEffect,jdbcType=VARCHAR},
+      drug_like = #{drugLike,jdbcType=VARCHAR},
+      attention = #{attention,jdbcType=VARCHAR},
+      figure = #{figure,jdbcType=VARCHAR}
+    where knowledge_id = #{knowledgeId,jdbcType=BIGINT}
+  </update>
+</mapper>

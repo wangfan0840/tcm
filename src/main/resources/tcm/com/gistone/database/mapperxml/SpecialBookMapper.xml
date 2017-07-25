@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tcm.com.gistone.database.mapper.SpecialBookMapper" >
+  <resultMap id="BaseResultMap" type="tcm.com.gistone.database.entity.SpecialBook" >
+    <id column="s_book_id" property="sBookId" jdbcType="BIGINT" />
+    <result column="book_id" property="bookId" jdbcType="BIGINT" />
+    <result column="special_id" property="specialId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    s_book_id, book_id, special_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_special_book
+    where s_book_id = #{sBookId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_special_book
+    where s_book_id = #{sBookId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="tcm.com.gistone.database.entity.SpecialBook" >
+    insert into tb_special_book (s_book_id, book_id, special_id
+      )
+    values (#{sBookId,jdbcType=BIGINT}, #{bookId,jdbcType=BIGINT}, #{specialId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="tcm.com.gistone.database.entity.SpecialBook" >
+    insert into tb_special_book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sBookId != null" >
+        s_book_id,
+      </if>
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="specialId != null" >
+        special_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sBookId != null" >
+        #{sBookId,jdbcType=BIGINT},
+      </if>
+      <if test="bookId != null" >
+        #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="specialId != null" >
+        #{specialId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tcm.com.gistone.database.entity.SpecialBook" >
+    update tb_special_book
+    <set >
+      <if test="bookId != null" >
+        book_id = #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="specialId != null" >
+        special_id = #{specialId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where s_book_id = #{sBookId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tcm.com.gistone.database.entity.SpecialBook" >
+    update tb_special_book
+    set book_id = #{bookId,jdbcType=BIGINT},
+      special_id = #{specialId,jdbcType=BIGINT}
+    where s_book_id = #{sBookId,jdbcType=BIGINT}
+  </update>
+</mapper>
