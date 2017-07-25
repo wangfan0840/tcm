@@ -16,25 +16,31 @@
     <script src="js/plugins/treeview/bootstrap-treeview.js"></script>
     <script type="text/javascript" src="js/js.js"></script>
     <style type="text/css">
-        #frameContent{
-            /*width:500px;                                      !*调整显示区的宽*!*/
-            height:480px;                                     /*调整显示区的高*/
-            font-size:14px;
-            line-height:20px;
-            border:1px solid #000000;
-            overflow-pageINdex:hidden;
-            overflow-y:hidden;
-            word-break:break-all;
-        }
-        a{
-            font-size:12px;
-            color:#000000;
-            text-decoration:underline;
-        }
-        a:hover{
-            font-size:12px;
-            color:#CC0000;
-            text-decoration:underline;
+        /*#frameContent {*/
+            /*!*width:500px;                                      !*调整显示区的宽*!*!*/
+            /*height: 480px; !*调整显示区的高*!*/
+            /*font-size: 14px;*/
+            /*line-height: 20px;*/
+            /*border: 1px solid #000000;*/
+            /*overflow-pageINdex: hidden;*/
+            /*overflow-y: hidden;*/
+            /*word-break: break-all;*/
+        /*}*/
+
+        /*a {*/
+            /*font-size: 12px;*/
+            /*color: #000000;*/
+            /*text-decoration: underline;*/
+        /*}*/
+
+        /*a:hover {*/
+            /*font-size: 12px;*/
+            /*color: #CC0000;*/
+            /*text-decoration: underline;*/
+        /*}*/
+
+        .selective {
+            background: #ffb7b7; /* WebKit/Blink Browsers */
         }
     </style>
 </head>
@@ -49,7 +55,30 @@
     <div class="col-md-9">
         <h2 id="desc">Main Content Section</h2>
 
-        <div id="pages" style="font-size:12px;"></div>
+        <div id="pages" style="font-size:14px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-inline">
+                        <input type="text" value="" name="inputNum" id="inputNum" class="form-control" style="width: 60px"/>
+                        <button class="btn btn-primary" type="button"><i class="fa  fa-plus"></i>&nbsp;跳转
+                        </button>
+                        <button class="btn btn-primary" type="button" onclick="javascript:gotopage('-1');"><i class="fa  fa-plus"></i>&nbsp;上一页
+                        </button>
+
+                        <button class="btn btn-primary" type="button" onclick="javascript:gotopage('1');"><i class="fa  fa-plus"></i>&nbsp;下一页
+                        </button>
+                    </div>
+
+
+                </div>
+
+                <p class="selective"></p>
+
+
+
+            </div>
+
+        </div>
         <div id="frameContent"></div>
 
     </div>

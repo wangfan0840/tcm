@@ -9,6 +9,7 @@ import tcm.com.gistone.database.config.GetBySqlMapper;
 import tcm.com.gistone.util.Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -35,9 +36,8 @@ public class ReaderController {
      */
     private Item childNode(int bookId, Item item) {
         List<Item> nodes = nodes(bookId, item);
-
         if (nodes.size() > 0) {
-
+            item.setLeaf(false);
 
             for (Item node : nodes) {
 
@@ -46,6 +46,8 @@ public class ReaderController {
             }
             item.setNodes(nodes);
 
+        }else {
+            item.setLeaf(true);
         }
 
         return item;
@@ -70,6 +72,17 @@ public class ReaderController {
                 Item child = new Item();
                 child.setId((long) map.get("id"));
                 child.setText(map.get("name").toString());
+                Object secId =map.get("section_id");
+                if(secId!=null){
+                    System.out.println("secId"+secId.toString());
+                    child.setSectionId(Integer.parseInt(map.get("section_id")==null?"":map.get("section_id").toString()));
+                    String sql2 ="select number from tb_section where section_id =" + child.getSectionId();
+
+
+
+                    child.setNumber(this.getBySqlMapper.findNumber(sql2));
+                }
+
                 nodes.add(child);
             }
 
@@ -92,6 +105,7 @@ public class ReaderController {
         String bookName = this.getBySqlMapper.findRecords(sql).get(0).get("book_name").toString();
         root.setText(bookName);
         root.setId(0);
+        root.setLeaf(false);
         childNode(1, root);
         voItemList.add(root);
         return voItemList;
@@ -133,11 +147,68 @@ public class ReaderController {
         return content;
     }
 
+    @RequestMapping(value = "getContentByNumber", method = RequestMethod.GET)
+    public String getContentByNumber(@RequestParam Integer bookId,@RequestParam Integer number,Integer sectionId) {
+
+        String content = "";
+        String sql = "select * from tb_section where book_id =" + bookId+" and number =" + number;
+        List<Map> maps = this.getBySqlMapper.findRecords(sql);
+
+        for (int i = 0; i < maps.size(); i++) {
+
+            Map map = maps.get(i);
+            String section = map.get("section_content").toString();
+            Pattern p = Pattern.compile("\\s{21}");
+            Matcher m = p.matcher(section);
+            section = m.replaceAll("");
+
+            section =section.replace("      ","<br/>&emsp;&emsp;");
+            section =section.replaceAll("\r\n","<br/>");
+            section =section.replaceAll("\r","<br/>");
+
+
+                if(i==maps.size()-1){
+                    if(null!=sectionId&&sectionId== Integer.valueOf(map.get("section_id").toString())) {
+                        content =  content + "<span class='selective'>"+"&emsp;&emsp;" + section + "</span>";
+                    }else{
+                        content = content +"&emsp;&emsp;" +section;
+                    }
+                }else {
+
+                    if(null!=sectionId&&sectionId== Integer.valueOf(map.get("section_id").toString())) {
+                        content =  content+"<span class='selective'>"  + "&emsp;&emsp;" + section + "</span>"+ "<br/>";
+                    }else{
+                        content = content +"&emsp;&emsp;" +section+ "<br/>";
+                    }
+
+
+                }
+
+
+
+        }
+        return content;
+    }
+
+
+
+
     @RequestMapping(value = "getBookInfo", method = RequestMethod.GET)
     public Map getBookInfo(@RequestParam Integer bookId) {
+        Map map =new HashMap();
         String sql = "select * from tb_bookinfo where book_id =" + bookId;
-        return this.getBySqlMapper.findRecords(sql).get(0);
+        map.put("bookInfo",this.getBySqlMapper.findRecords(sql).get(0));
+
+
+        sql = "select max(number) as number from tb_section where book_id =" + bookId;
+
+        map.put("pagenum",this.getBySqlMapper.findrows(sql));
+
+        return  map;
     }
+
+
+
 
 
 }

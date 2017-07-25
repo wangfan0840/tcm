@@ -17,7 +17,10 @@ public interface GetBySqlMapper {
 	
 	@SelectProvider(type=TutorDynaSqlProvider.class, method="findTutorByIdSql")
 	int findrows(String SQLAdapter);
-	
+
+	@SelectProvider(type=TutorDynaSqlProvider.class, method="findTutorByIdSql")
+	int findNumber(String SQLAdapter);
+
 	@InsertProvider(type=TutorDynaSqlProvider.class, method="findTutorByIdSql")
 	int insert(String SQLAdapter);
 	
